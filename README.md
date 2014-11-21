@@ -11,8 +11,8 @@ or (if you want to modify the code):
 
     $ cd to/my/meteor/project
     $ mkdir packages # ensure that packages folder exists
-    $ git clone https://github.com/pauloborges/meteor-mapbox.git packages/mapbox
-    $ meteor add mapbox
+    $ git clone https://github.com/pauloborges/meteor-mapbox.git packages/pauloborges:mapbox
+    $ meteor add pauloborges:mapbox
 
 ## Supported plugins
 
