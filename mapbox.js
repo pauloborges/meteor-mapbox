@@ -210,6 +210,9 @@ Mapbox = {
   debug: false,
 
   load: function () {
+    if (loaded)
+      return;
+
     plugins = _.values(arguments);
     loadFiles(FILES.mapbox, onMapboxLoaded);
   },
