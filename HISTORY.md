@@ -1,4 +1,4 @@
-## Next
+## 2.1.4_1
 
 * Make `Mapbox.load()` an idempotent function.
 

@@ -5,7 +5,7 @@ Mapbox.js for [Meteor](https://www.meteor.com/) apps. Current Mapbox version: `2
 ## Install
 
     $ cd to/my/meteor/project
-    $ meteor add pauloborges:mapbox@2.1.4
+    $ meteor add pauloborges:mapbox@2.1.4_1
 
 or (if you want to modify the code):
 
