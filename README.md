@@ -43,9 +43,12 @@ supported:
 Call `Mapbox.load(pluginList)` in your client code. Use `Mapbox.loaded()` to
 check if it finished loading. This function is reactive.
 
-### Example
+### Examples
 
-    Mapbox.load('minimap', 'markercluster');
+    // Basic
+    Meteor.startup(function(){
+        Mapbox.load('minimap', 'markercluster');
+    });
 
     Deps.autorun(function () {
       if (Mapbox.loaded()) {
@@ -53,3 +56,18 @@ check if it finished loading. This function is reactive.
         var map = L.mapbox.map('map', MY_MAP_ID);
       }
     });
+    
+
+    // Using a template's rendered callback
+    Meteor.startup(function(){
+        Mapbox.load();
+    });
+
+    Template.Map.rendered = function () {
+        this.autorun(function () {
+            if (Mapbox.loaded()) {
+                L.mapbox.accessToken = TOKEN; 
+                var map = L.mapbox.map('map', MAP_ID);
+            }
+        });
+    };    
