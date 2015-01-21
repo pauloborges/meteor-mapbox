@@ -1,3 +1,7 @@
+## 2.1.4_2
+
+* Fix map loading in cordova builds in Android. (#3)
+
 ## 2.1.4_1
 
 * Make `Mapbox.load()` an idempotent function.
