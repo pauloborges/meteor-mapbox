@@ -5,7 +5,7 @@ Mapbox.js for [Meteor](https://www.meteor.com/) apps. Current Mapbox version: `2
 ## Install
 
     $ cd to/my/meteor/project
-    $ meteor add pauloborges:mapbox@2.1.4_1
+    $ meteor add pauloborges:mapbox@2.1.4_2
 
 or (if you want to modify the code):
 
@@ -70,4 +70,5 @@ check if it finished loading. This function is reactive.
                 var map = L.mapbox.map('map', MAP_ID);
             }
         });
-    };    
+    };
+
