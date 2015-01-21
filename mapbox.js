@@ -187,23 +187,22 @@ var loadCss = function (href) {
   elem.rel = 'stylesheet';
   elem.href = href;
 
-  elem.addEventListener('load', _.partial(onLoadedFile, href), false);
-
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(elem);
 };
 
 var loadFiles = function (files, cb) {
-  loadCount = _.size(files.js) + _.size(files.css);
+  loadCount = _.size(files.js);
   loadCallback = cb;
+
+  _.each(files.css, function (url) {
+    loadCss(url);
+  });
 
   _.each(files.js, function (url) {
     loadScript(url);
   });
 
-  _.each(files.css, function (url) {
-    loadCss(url);
-  });
 };
 
 Mapbox = {
