@@ -124,59 +124,42 @@ var FILES = {
 var deps = new Deps.Dependency;
 var loaded = false;
 
-var loadCount = 0;
-var loadCallback = null;
-
-var pluginCount = 0;
-var plugins = null;
-
 var onLoaded = function () {
   loaded = true;
   deps.changed();
 };
 
-var onPluginLoaded = function () {
-  pluginCount--;
+var onMapboxLoaded = function (plugins, cb) {
+  var pluginCount = _.size(plugins);
 
-  if (pluginCount == 0)
-    onLoaded();
-};
-
-var onMapboxLoaded = function () {
-  pluginCount = _.size(plugins);
-
-  if (pluginCount == 0) {
-    onLoaded();
+  if (pluginCount === 0) {
+    cb();
     return;
   }
 
-  _.each(plugins, function (pluginName) {
-    var plugin = FILES[pluginName];
+  var loadCb = function () {
+    pluginCount--;
 
-    if (plugin)
-      loadFiles(plugin, onPluginLoaded);
-    else
-      console.log('Invalid MapBox plugin: "' + pluginName + '"');
-  });
+    if (pluginCount === 0) {
+      cb();
+      return;
+    }
+
+    plugin = plugins.shift();
+    loadFiles(FILES[plugin], loadCb);
+  };
+
+  var plugin = plugins.shift();
+  loadFiles(FILES[plugin], loadCb);
 };
 
-var onLoadedFile = function (url) {
-  if (Mapbox.debug)
-    console.log('Loaded "' + url + '"');
-
-  loadCount--;
-
-  if (loadCount == 0)
-    loadCallback();
-};
-
-var loadScript = function (src) {
+var loadScript = function (src, cb) {
   var elem = document.createElement('script');
   elem.type = 'text/javascript';
   elem.src = src;
   elem.defer = true;
 
-  elem.addEventListener('load', _.partial(onLoadedFile, src), false);
+  elem.addEventListener('load', _.partial(cb, src), false);
 
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(elem);
@@ -192,17 +175,22 @@ var loadCss = function (href) {
 };
 
 var loadFiles = function (files, cb) {
-  loadCount = _.size(files.js);
-  loadCallback = cb;
+  var loadCount = _.size(files.js);
 
-  _.each(files.css, function (url) {
-    loadCss(url);
-  });
+  var loadCb = function (url) {
+    if (Mapbox.debug)
+      console.log('Loaded:', url);
 
+    loadCount--;
+
+    if (loadCount === 0)
+      cb();
+  };
+
+  _.each(files.css, loadCss);
   _.each(files.js, function (url) {
-    loadScript(url);
+    loadScript(url, loadCb);
   });
-
 };
 
 Mapbox = {
@@ -212,8 +200,8 @@ Mapbox = {
     if (loaded)
       return;
 
-    plugins = _.values(arguments);
-    loadFiles(FILES.mapbox, onMapboxLoaded);
+    var plugins = _.values(arguments);
+    loadFiles(FILES.mapbox, _.partial(onMapboxLoaded, plugins, onLoaded));
   },
 
   loaded: function () {
