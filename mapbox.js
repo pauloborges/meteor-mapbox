@@ -144,13 +144,11 @@ var onMapboxLoaded = function (plugins, cb) {
       cb();
       return;
     }
-
-    plugin = plugins.shift();
-    loadFiles(FILES[plugin], loadCb);
   };
 
-  var plugin = plugins.shift();
-  loadFiles(FILES[plugin], loadCb);
+  _.each(plugins, function (plugin) {
+    loadFiles(FILES[plugin], loadCb);
+  });
 };
 
 var loadScript = function (src, cb) {
