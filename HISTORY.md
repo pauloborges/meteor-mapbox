@@ -1,3 +1,7 @@
+## 2.1.4_3
+
+* Fix bug on loading multiple plugins. (#5)
+
 ## 2.1.4_2
 
 * Fix map loading in cordova builds in Android. (#3)
