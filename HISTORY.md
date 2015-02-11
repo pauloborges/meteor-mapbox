@@ -1,3 +1,7 @@
+##2.1.5 (dev)
+
+* Update mapbox.js to version `2.1.5`.
+
 ## 2.1.4_3
 
 * Fix bug on loading multiple plugins. (#5)
