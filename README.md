@@ -19,6 +19,7 @@ or (if you want to modify the code):
 All plugins listed [here](https://www.mapbox.com/mapbox.js/plugins/) are
 supported:
 
+* [turf](https://www.mapbox.com/mapbox.js/plugins/#turf)
 * [directions](https://www.mapbox.com/mapbox.js/plugins/#mapbox-directions)
 * [zoomslider](https://www.mapbox.com/mapbox.js/plugins/#leaflet-zoomslider)
 * [pip](https://www.mapbox.com/mapbox.js/plugins/#point-in-polygon)

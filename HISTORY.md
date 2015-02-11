@@ -1,6 +1,7 @@
 ##2.1.5 (dev)
 
 * Update mapbox.js to version `2.1.5`.
+* Add turf plugin.
 
 ## 2.1.4_3
 

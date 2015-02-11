@@ -25,6 +25,11 @@ var FILES = {
     css:  ['https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css'],
   },
 
+  turf: {
+    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.4.0/turf.min.js'],
+    css:  []
+  },
+
   directions: {
     js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.0.1/mapbox.directions.js'],
     css:  ['https://api.tiles.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.0.1/mapbox.directions.css']
