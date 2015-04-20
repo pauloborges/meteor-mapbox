@@ -25,6 +25,11 @@ var FILES = {
     css:  ['https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css'],
   },
 
+  mapboxgl: {
+    js:   ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.6.0/mapbox-gl.js'],
+    css:  ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.6.0/mapbox-gl.css'],
+  },
+
   turf: {
     js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.4.0/turf.min.js'],
     css:  []
@@ -205,8 +210,9 @@ Mapbox = {
 
     var opts = opts || {};
     var plugins = opts.plugins || [];
+    var initialFiles = opts.gl ? FILES.mapboxgl : FILES.mapbox;
 
-    loadFiles(FILES.mapbox, _.partial(onMapboxLoaded, plugins, onLoaded));
+    loadFiles(initialFiles, _.partial(onMapboxLoaded, plugins, onLoaded));
   },
 
   loaded: function () {

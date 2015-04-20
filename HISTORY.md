@@ -3,6 +3,7 @@
 * Update mapbox.js to version `2.1.5`.
 * Add turf plugin.
 * Modify `Mapbox.load()` API.
+* Add support to Mapbox GL. (#7)
 
 ## 2.1.4_3
 

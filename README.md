@@ -1,6 +1,12 @@
 # pauloborges:mapbox
 
-Mapbox.js for [Meteor](https://www.meteor.com/) apps. Current Mapbox version: `2.1.5`.
+Mapbox.js for [Meteor](https://www.meteor.com/) apps.
+
+Version matrix:
+
+Mapbox JS | Mapbox GL
+----------|----------
+`2.1.5`   | `0.6.0`
 
 ## Install
 
@@ -49,10 +55,12 @@ finished loading. This function is reactive.
 #### `Mapbox.load(opts)`
 
     Mapbox.load({
+        gl: boolean // optional
         plugins: list // optional
     })
 
-`opts` is optional.
+* `opts` is optional.
+* `gl`: if `true` [Mapbox GL](https://www.mapbox.com/mapbox-gl/) will be loaded
 
 ### Examples
 
