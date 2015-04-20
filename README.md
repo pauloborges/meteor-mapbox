@@ -41,8 +41,18 @@ supported:
 
 ## Usage
 
-Call `Mapbox.load(pluginList)` in your client code. Use `Mapbox.loaded()` to
-check if it finished loading. This function is reactive.
+Call `Mapbox.load()` in your client code. Use `Mapbox.loaded()` to check if it
+finished loading. This function is reactive.
+
+### API
+
+#### `Mapbox.load(opts)`
+
+    Mapbox.load({
+        plugins: list // optional
+    })
+
+`opts` is optional.
 
 ### Examples
 
