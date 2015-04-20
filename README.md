@@ -48,7 +48,9 @@ check if it finished loading. This function is reactive.
 
     // Basic
     Meteor.startup(function(){
-        Mapbox.load('minimap', 'markercluster');
+        Mapbox.load({
+            plugins: ['minimap', 'markercluster']
+        });
     });
 
     Deps.autorun(function () {

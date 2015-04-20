@@ -199,11 +199,13 @@ var loadFiles = function (files, cb) {
 Mapbox = {
   debug: false,
 
-  load: function () {
+  load: function (opts) {
     if (loaded)
       return;
 
-    var plugins = _.values(arguments);
+    var opts = opts || {};
+    var plugins = opts.plugins || [];
+
     loadFiles(FILES.mapbox, _.partial(onMapboxLoaded, plugins, onLoaded));
   },
 
