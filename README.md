@@ -6,7 +6,7 @@ Version matrix:
 
 Mapbox JS | Mapbox GL
 ----------|----------
-`2.1.5`   | `0.6.0`
+`2.1.5`   | `0.8.1`
 
 ## Install
 
