@@ -1,0 +1,71 @@
+<head>
+  <title>Mapbox for Meteor apps</title>
+</head>
+
+<template name="Layout">
+  {{> Template.dynamic template=content}}
+
+  <a href="https://github.com/pauloborges/meteor-mapbox"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+</template>
+
+<template name="Main">
+  <div id="map" class="mapbox"></div>
+
+  <div id="footer" class="ui grid">
+      <div class="one wide column"></div>
+
+      <div class="fourteen wide column">
+        <div class="ui segment">
+          <div class="ui three column grid">
+            <div class="four wide nested column">
+              <p>Install it</p>
+              <pre>$ meteor add pauloborges:mapbox</pre>
+            </div>
+
+            <div class="four wide nested column">
+              <p>HTML</p>
+              <pre>{{html}}</pre>
+            </div>
+
+            <div class="nested column">
+              <p>JS</p>
+              <pre>{{js}}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="one wide column"></div>
+  </div>
+</template>
+
+<template name="GL">
+  <div id="map" class="mapbox"></div>
+
+  <div id="footer" class="ui grid">
+      <div class="one wide column"></div>
+
+      <div class="fourteen wide column">
+        <div class="ui segment">
+          <div class="ui three column grid">
+            <div class="four wide nested column">
+              <p>Install it</p>
+              <pre>$ meteor add pauloborges:mapbox</pre>
+            </div>
+
+            <div class="four wide nested column">
+              <p>HTML</p>
+              <pre>{{html}}</pre>
+            </div>
+
+            <div class="nested column">
+              <p>JS</p>
+              <pre>{{js}}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="one wide column"></div>
+  </div>
+</template>
