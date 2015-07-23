@@ -142,9 +142,16 @@ var onLoaded = function () {
 //utility regex function to replace version number in url
 var replaceVersion=function(url,version){
     if(version)
-       return url.replace(/v\d+\.\d+\.\d+/gi,'v'+version);
-    else
-        return url
+    {
+        var res= url.replace(/v\d+\.\d+\.\d+/gi,'v'+version);
+        console.log (res);
+        return res
+    }
+    else{
+        return url;
+    }
+
+
 };
 
 var onMapboxLoaded = function (plugins, cb) {
@@ -192,9 +199,8 @@ var loadCss = function (href,version) {
 
 var loadFiles = function (plugin,cb) {
     var parts=plugin.split('@');
-    var files=parts.length?FILES[part[0]] : FILES[plugin];
-    var version=parts.length?FILES[part[1]] :null;
-
+    var files=parts.length?FILES[parts[0]] : FILES[plugin];
+    var version=parts.length?parts[1] :null;
       var loadCount = _.size(files.js);
 
       var loadCb = function (url) {
@@ -230,8 +236,9 @@ Mapbox = {
       var mapboxPlg=_.find(plugins,function(plugin){
           return new RegExp(/(mapbox@\d+\.\d+\.\d+)/gi).test(plugin)
       }) || 'mapbox' ;
+      console.log(mapboxPlg);
     var initialPlugin= opts.gl ? mapboxglPlg : mapboxPlg;
-    loadFiles(initialPlugin, _.partial(onMapboxLoaded, plugins, onLoaded));
+    loadFiles(initialPlugin, _.partial(onMapboxLoaded, _.without(plugins,initialPlugin), onLoaded));
   },
 
   loaded: function () {
