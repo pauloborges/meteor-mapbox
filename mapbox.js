@@ -21,7 +21,7 @@
 
 var FILES = {
   mapbox: {
-    js:   ['https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'],
+    js:   [{url:'https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'}],
     css:  ['https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css'],
   },
 
@@ -139,6 +139,14 @@ var onLoaded = function () {
   deps.changed();
 };
 
+//utility regex function to replace version number in url
+var replaceVersion=function(url,version){
+    if(version)
+       return url.replace(/v\d+\.\d+\.\d+/gi,'v'+version);
+    else
+        return url
+};
+
 var onMapboxLoaded = function (plugins, cb) {
   var pluginCount = _.size(plugins);
 
@@ -157,14 +165,18 @@ var onMapboxLoaded = function (plugins, cb) {
   };
 
   _.each(plugins, function (plugin) {
-    loadFiles(FILES[plugin], loadCb);
+    parts=plugin.split('@');
+      if (parts.length)
+        loadFiles(FILES[part[0]],loadCb,part[1])
+      else
+        loadFiles(FILES[plugin], loadCb);
   });
 };
 
-var loadScript = function (src, cb) {
+var loadScript = function (src,version, cb) {
   var elem = document.createElement('script');
   elem.type = 'text/javascript';
-  elem.src = src;
+  elem.src = replaceVersion(src);
   elem.defer = true;
 
   elem.addEventListener('load', _.partial(cb, src), false);
@@ -173,16 +185,16 @@ var loadScript = function (src, cb) {
   head.appendChild(elem);
 };
 
-var loadCss = function (href) {
+var loadCss = function (href,version) {
   var elem = document.createElement('link');
   elem.rel = 'stylesheet';
-  elem.href = href;
+  elem.href = replaceVersion(href);
 
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(elem);
 };
 
-var loadFiles = function (files, cb) {
+var loadFiles = function (files,cb,version) {
   var loadCount = _.size(files.js);
 
   var loadCb = function (url) {
@@ -195,9 +207,11 @@ var loadFiles = function (files, cb) {
       cb();
   };
 
-  _.each(files.css, loadCss);
+  _.each(files.css,function(href){
+      loadCss(href,version)
+  } );
   _.each(files.js, function (url) {
-    loadScript(url, loadCb);
+    loadScript(url,version, loadCb);
   });
 };
 
