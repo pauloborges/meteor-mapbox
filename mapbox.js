@@ -26,8 +26,8 @@ var FILES = {
   },
 
   mapboxgl: {
-    js:   ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.8.1/mapbox-gl.js'],
-    css:  ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.8.1/mapbox-gl.css'],
+    js:   ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.4/mapbox-gl.js'],
+    css:  ['https://api.tiles.mapbox.com/mapbox-gl-js/v0.11.4/mapbox-gl.css'],
   },
 
   turf: {
