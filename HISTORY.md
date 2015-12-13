@@ -1,4 +1,4 @@
-##2.2.3 (dev)
+##2.2.3
 
 * Update Mapbox JS and Mapbox GL JS versions to 2.2.3 and 0.12.1 (#11, #13)
 * Add onLoad hook (#10)
