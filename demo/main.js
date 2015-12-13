@@ -46,7 +46,7 @@ if (Meteor.isClient) {
         mapboxgl.accessToken = 'pk.eyJ1IjoicGF1bG9ib3JnZXMiLCJhIjoicFQ1Sll5ZyJ9.alPGD574u3NOBi2iiIh--g';
         var map = new mapboxgl.Map({
           container: 'map',
-          style: 'https://www.mapbox.com/mapbox-gl-styles/styles/outdoors-v7.json',
+          style: 'mapbox://styles/mapbox/streets-v8',
         });
       }
     });
