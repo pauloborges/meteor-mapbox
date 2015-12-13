@@ -1,4 +1,8 @@
-##2.1.5 (dev)
+##2.2.3 (dev)
+
+* Update Mapbox JS and Mapbox GL JS versions to 2.2.3 and 0.12.1 (#11, #13)
+
+##2.1.5
 
 * Update mapbox.js to version `2.1.5`.
 * Add turf plugin.
