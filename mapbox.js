@@ -136,6 +136,7 @@ var loaded = false;
 
 var onLoaded = function () {
   loaded = true;
+  Mapbox.hook && Mapbox.hook.call && Mapbox.hook.call(this);
   deps.changed();
 };
 
@@ -202,8 +203,8 @@ var loadFiles = function (files, cb) {
 };
 
 Mapbox = {
+  hook: null,
   debug: false,
-
   load: function (opts) {
     if (loaded)
       return;
@@ -214,9 +215,11 @@ Mapbox = {
 
     loadFiles(initialFiles, _.partial(onMapboxLoaded, plugins, onLoaded));
   },
-
   loaded: function () {
     deps.depend();
     return loaded;
+  },
+  onLoaded: function(cb) {
+    this.hook = cb;
   }
 };
