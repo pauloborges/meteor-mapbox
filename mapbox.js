@@ -46,7 +46,7 @@ var FILES = {
   },
 
   pip: {
-    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.1.0/leaflet-pip.js'],
+    js:   ['https://api.mapbox.com/mapbox.js/plugins/leaflet-pip/v0.1.0/leaflet-pip.min.js'],
     css:  []
   },
 
@@ -56,7 +56,7 @@ var FILES = {
   },
 
   omnivore: {
-    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v1.0.0/leaflet-omnivore.min.js'],
+    js:   ['https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'],
     css:  ['https://api.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css']
   },
 
@@ -76,7 +76,7 @@ var FILES = {
   // FIXME: Doesn't support IE<9
   // https://www.mapbox.com/mapbox.js/example/v1.0.0/leaflet-locatecontrol/
   locate: {
-    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.js'],
+    js:   ['https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'],
     css:  ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css']
   },
 
