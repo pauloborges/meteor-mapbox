@@ -76,7 +76,7 @@ var FILES = {
   // FIXME: Doesn't support IE<9
   // https://www.mapbox.com/mapbox.js/example/v1.0.0/leaflet-locatecontrol/
   locate: {
-    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.js'],
+    js:   ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'],
     css:  ['https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css']
   },
 
