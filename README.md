@@ -11,7 +11,7 @@ Mapbox JS | Mapbox GL
 ## Install
 
     $ cd to/my/meteor/project
-    $ meteor add pauloborges:mapbox@2.2.3_1
+    $ meteor add pauloborges:mapbox@2.2.3_2
 
 or (if you want to modify the code):
 

@@ -1,6 +1,10 @@
+##2.2.3_2
+
+* Fix plugins URLs (#16)
+
 ##2.2.3_1
 
-* Fix locale plugin URL (#17, #18)
+* Fix locate plugin URL (#17, #18)
 
 ##2.2.3
 
