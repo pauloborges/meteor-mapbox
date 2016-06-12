@@ -8,6 +8,10 @@ Mapbox JS | Mapbox GL
 ----------|----------
 `2.2.3`   | `0.12.1`
 
+## Deprecation notice
+
+Unfortunately I can't maintain this project anymore. So it can be broken. Use it with caution.
+
 ## Install
 
     $ cd to/my/meteor/project
