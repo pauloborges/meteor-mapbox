@@ -140,6 +140,21 @@ var onLoaded = function () {
   deps.changed();
 };
 
+//utility regex function to replace version number in url
+var replaceVersion=function(url,version){
+    if(version)
+    {
+        var res= url.replace(/v\d+\.\d+\.\d+/gi,'v'+version);
+        console.log (res);
+        return res
+    }
+    else{
+        return url;
+    }
+
+
+};
+
 var onMapboxLoaded = function (plugins, cb) {
   var pluginCount = _.size(plugins);
 
@@ -158,14 +173,14 @@ var onMapboxLoaded = function (plugins, cb) {
   };
 
   _.each(plugins, function (plugin) {
-    loadFiles(FILES[plugin], loadCb);
+        loadFiles(plugin, loadCb);
   });
 };
 
-var loadScript = function (src, cb) {
+var loadScript = function (src,version, cb) {
   var elem = document.createElement('script');
   elem.type = 'text/javascript';
-  elem.src = src;
+  elem.src = replaceVersion(src,version);
   elem.defer = true;
 
   elem.addEventListener('load', _.partial(cb, src), false);
@@ -174,32 +189,37 @@ var loadScript = function (src, cb) {
   head.appendChild(elem);
 };
 
-var loadCss = function (href) {
+var loadCss = function (href,version) {
   var elem = document.createElement('link');
   elem.rel = 'stylesheet';
-  elem.href = href;
+  elem.href = replaceVersion(href,version);
 
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(elem);
 };
 
-var loadFiles = function (files, cb) {
-  var loadCount = _.size(files.js);
+var loadFiles = function (plugin,cb) {
+    var parts=plugin.split('@');
+    var files=parts.length?FILES[parts[0]] : FILES[plugin];
+    var version=parts.length?parts[1] :null;
+      var loadCount = _.size(files.js);
 
-  var loadCb = function (url) {
-    if (Mapbox.debug)
-      console.log('Loaded:', url);
+      var loadCb = function (url) {
+        if (Mapbox.debug)
+          console.log('Loaded:', url);
 
-    loadCount--;
+        loadCount--;
 
-    if (loadCount === 0)
-      cb();
-  };
+        if (loadCount === 0)
+          cb();
+      };
 
-  _.each(files.css, loadCss);
-  _.each(files.js, function (url) {
-    loadScript(url, loadCb);
-  });
+      _.each(files.css,function(href){
+          loadCss(href,version)
+      } );
+      _.each(files.js, function (url) {
+        loadScript(url,version, loadCb);
+      });
 };
 
 Mapbox = {
@@ -211,9 +231,15 @@ Mapbox = {
 
     var opts = opts || {};
     var plugins = opts.plugins || [];
-    var initialFiles = opts.gl ? FILES.mapboxgl : FILES.mapbox;
-
-    loadFiles(initialFiles, _.partial(onMapboxLoaded, plugins, onLoaded));
+      var mapboxglPlg= _.find(plugins,function(plugin){
+          return new RegExp(/(mapboxgl@\d+\.\d+\.\d+)/gi).test(plugin)
+      }) || 'mapboxgl';
+      var mapboxPlg=_.find(plugins,function(plugin){
+          return new RegExp(/(mapbox@\d+\.\d+\.\d+)/gi).test(plugin)
+      }) || 'mapbox' ;
+      console.log(mapboxPlg);
+    var initialPlugin= opts.gl ? mapboxglPlg : mapboxPlg;
+    loadFiles(initialPlugin, _.partial(onMapboxLoaded, _.without(plugins,initialPlugin), onLoaded));
   },
   loaded: function () {
     deps.depend();

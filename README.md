@@ -75,6 +75,13 @@ finished loading. This function is reactive.
         });
     });
 
+    or change default version number of plugin by specifying plugin@version
+    Meteor.startup(function(){
+        Mapbox.load({
+            plugins: ['mapbox@2.2.1','minimap']
+        }
+    }
+
     Deps.autorun(function () {
       if (Mapbox.loaded()) {
         L.mapbox.accessToken = MY_ACCESS_TOKEN;
